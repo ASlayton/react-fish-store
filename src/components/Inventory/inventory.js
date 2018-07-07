@@ -4,7 +4,7 @@ import './inventory.css';
 class Inventory extends React.Component {
   render () {
     return (
-      <div className="inventory">
+      <div className="Inventory">
         <h2>Inventory</h2>
       </div>
     );
