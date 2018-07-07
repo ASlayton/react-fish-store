@@ -6,11 +6,11 @@ import Home from '../components/Home/home';
 import Inventory from '../components/Inventory/inventory';
 import Login from '../components/Login/login';
 import Navbar from '../components/Navbar/navbar';
-// import New from '../components/New/new';
+import New from '../components/New/new';
 // import Order from '../components/Order/order';
-// import OrderSpa from '../components/OrderSpa/orderSpa';
+import OrderSpa from '../components/OrderSpa/orderSpa';
 import Register from '../components/Register/register';
-// import SingleOrder from '../components/SingleOrder/singleOrder';
+import SingleOrder from '../components/SingleOrder/singleOrder';
 import fbConnection from '../firebaseRequests/connection';
 import firebase from 'firebase';
 
@@ -69,6 +69,10 @@ class App extends React.Component {
     this.removeListener();
   };
 
+  runAway = () => {
+    this.setState({authed: false});
+  }
+
   render () {
     return (
       <div className="App">
@@ -82,6 +86,9 @@ class App extends React.Component {
                 <Switch>
                   <Route path="/" exact component={Home} />
                   <PrivateRoute path="/inventory" authed={this.state.authed} component={Inventory} />
+                  <PrivateRoute path="/Orders" authed={this.state.authed} component={OrderSpa} />
+                  <PrivateRoute path="/order/:id" authed={this.state.authed} component={SingleOrder} />
+                  <PrivateRoute path="/new" authed={this.state.authed} component={New} />
                   <PublicRoute path="/register" authed={this.state.authed} component={Register} />
                   <PublicRoute path="/login" authed={this.state.authed} component={Login} />
                 </Switch>
