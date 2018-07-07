@@ -1,14 +1,15 @@
 import React from 'react';
-import './new.css';
+
+import './New.css';
 
 class New extends React.Component {
   render () {
     return (
       <div className="New">
-        <h2>New</h2>
+        <h1>New</h1>
       </div>
     );
-  };
-};
+  }
+}
 
 export default New;

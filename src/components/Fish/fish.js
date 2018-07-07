@@ -1,14 +1,15 @@
 import React from 'react';
-import './fish.css';
+
+import './Fish.css';
 
 class Fish extends React.Component {
   render () {
     return (
       <div className="Fish">
-        <h2>Fish</h2>
+        <h1>FISH</h1>
       </div>
     );
-  };
-};
+  }
+}
 
 export default Fish;

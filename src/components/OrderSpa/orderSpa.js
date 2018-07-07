@@ -1,14 +1,15 @@
 import React from 'react';
-import './orderSpa.css';
+
+import './OrderSpa.css';
 
 class OrderSpa extends React.Component {
   render () {
     return (
       <div className="OrderSpa">
-        <h2>Order Spa</h2>
+        <h1>OrderSpa</h1>
       </div>
     );
-  };
-};
+  }
+}
 
 export default OrderSpa;

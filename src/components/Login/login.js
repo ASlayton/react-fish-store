@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import authRequests from '../../firebaseRequests/auth';
 
-import './login.css';
+import './Login.css';
 
 class Login extends React.Component {
   state = {
@@ -22,7 +22,7 @@ class Login extends React.Component {
         this.props.history.push('/orders');
       })
       .catch(error => {
-        console.error('there was an error in registering', error);
+        console.error('there was an error in login', error);
       });
   };
 

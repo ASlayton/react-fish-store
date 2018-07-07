@@ -1,14 +1,15 @@
 import React from 'react';
-import './order.css';
+
+import './Order.css';
 
 class Order extends React.Component {
   render () {
     return (
       <div className="Order">
-        <h2>Order</h2>
+        <h1>Order</h1>
       </div>
     );
-  };
-};
+  }
+}
 
 export default Order;
