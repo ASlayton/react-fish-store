@@ -1,19 +1,18 @@
 import React from 'react';
-import {Route, BrowserRouter, Redirect, Switch} from 'react-router-dom';
-import './App.css';
-// import Fish from '../components/Fish/fish';
-import Home from '../components/Home/home';
-import Inventory from '../components/Inventory/inventory';
-import Login from '../components/Login/login';
-import Navbar from '../components/Navbar/navbar';
-import New from '../components/New/new';
-// import Order from '../components/Order/order';
-import OrderSpa from '../components/OrderSpa/orderSpa';
-import Register from '../components/Register/register';
-import SingleOrder from '../components/SingleOrder/singleOrder';
-import fbConnection from '../firebaseRequests/connection';
+import {Route, BrowserRouter, Redirect, Switch}  from 'react-router-dom';
 import firebase from 'firebase';
 
+import './App.css';
+
+import Home from '../components/Home/Home';
+import Inventory from '../components/Inventory/Inventory';
+import Login from '../components/Login/Login';
+import Navbar from '../components/Navbar/Navbar';
+import New from '../components/New/New';
+import OrderSpa from '../components/OrderSpa/OrderSpa';
+import Register from '../components/Register/Register';
+import SingleOrder from '../components/SingleOrder/SingleOrder';
+import fbConnection from '../firebaseRequests/connection';
 fbConnection();
 
 const PrivateRoute = ({ component: Component, authed, ...rest}) => {
@@ -61,13 +60,13 @@ class App extends React.Component {
         this.setState({authed: true});
       } else {
         this.setState({authed: false});
-      };
+      }
     });
-  };
+  }
 
   componentWillUnmount () {
     this.removeListener();
-  };
+  }
 
   runAway = () => {
     this.setState({authed: false});
@@ -80,27 +79,47 @@ class App extends React.Component {
           <div>
             <Navbar
               authed={this.state.authed}
+              runAway={this.runAway}
             />
             <div className="container">
               <div className="row">
                 <Switch>
-                  <Route path="/" exact component={Home} />
-                  <PrivateRoute path="/inventory" authed={this.state.authed} component={Inventory} />
-                  <PrivateRoute path="/Orders" authed={this.state.authed} component={OrderSpa} />
-                  <PrivateRoute path="/order/:id" authed={this.state.authed} component={SingleOrder} />
-                  <PrivateRoute path="/new" authed={this.state.authed} component={New} />
-                  <PublicRoute path="/register" authed={this.state.authed} component={Register} />
-                  <PublicRoute path="/login" authed={this.state.authed} component={Login} />
+                  <Route path="/" exact component={Home}/>
+                  <PrivateRoute
+                    path="/inventory"
+                    authed={this.state.authed}
+                    component={Inventory}
+                  />
+                  <PublicRoute
+                    path="/register"
+                    authed={this.state.authed}
+                    component={Register}
+                  />
+                  <PublicRoute
+                    path="/login"
+                    authed={this.state.authed}
+                    component={Login}
+                  />
+                  <PrivateRoute
+                    path="/orders"
+                    authed={this.state.authed}
+                    component={OrderSpa}
+                  />
+                  <PrivateRoute
+                    path="/order/:id"
+                    authed={this.state.authed}
+                    component={SingleOrder}
+                  />
+                  <PrivateRoute
+                    path="/new"
+                    authed={this.state.authed}
+                    component={New}
+                  />
                 </Switch>
               </div>
             </div>
           </div>
         </BrowserRouter>
-        {/* <Fish />
-        <New />
-        <Order />
-        <OrderSpa />
-        <SingleOrder /> */}
       </div>
     );
   }

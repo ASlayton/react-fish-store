@@ -12,4 +12,4 @@ const logoutUser = () => {
   return firebase.auth().signOut();
 };
 
-export default {loginUser, registerUser, logoutUser};
+export default {loginUser, logoutUser, registerUser};

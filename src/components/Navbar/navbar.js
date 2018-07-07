@@ -1,7 +1,9 @@
 import React from 'react';
-import './navbar.css';
 import {Link} from 'react-router-dom';
-import authRequests from '../../firebaseRequests/auth';
+
+import authRequests from  '../../firebaseRequests/auth';
+
+import './Navbar.css';
 
 class Navbar extends React.Component {
   render () {
@@ -10,6 +12,7 @@ class Navbar extends React.Component {
       authRequests.logoutUser();
       runAway();
     };
+
     return (
       <div className="Navbar">
         <nav className="navbar navbar-inverse">
@@ -21,22 +24,24 @@ class Navbar extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link className="navbar-brand" to="">Fish Store</Link>
+              <Link  to="/" className="navbar-brand">Fish Store</Link>
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               {
                 authed ? (
                   <ul className="nav navbar-nav navbar-right">
                     <li>
-                      <Link to="/Inventory">Inventory</Link>
+                      <Link to="/inventory">Inventory</Link>
                     </li>
                     <li>
-                      <Link to="/Orders">Orders</Link>
+                      <Link to="/orders">Orders</Link>
                     </li>
                     <li className="navbar-form">
                       <button
                         onClick={logoutClickEvent}
-                        className="btn btn-danger">Logout
+                        className="btn btn-danger"
+                      >
+                        Logout
                       </button>
                     </li>
                   </ul>
@@ -48,12 +53,12 @@ class Navbar extends React.Component {
                   </ul>
                 )
               }
-
             </div>
           </div>
         </nav>
       </div>
     );
-  };
-};
+  }
+}
+
 export default Navbar;

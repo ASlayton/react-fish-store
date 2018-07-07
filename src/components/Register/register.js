@@ -1,7 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import './register.css';
+import { Link } from 'react-router-dom';
+
 import authRequests from '../../firebaseRequests/auth';
+
+import './Register.css';
 
 class Register extends React.Component {
   state = {
@@ -20,7 +22,7 @@ class Register extends React.Component {
         this.props.history.push('/orders');
       })
       .catch((err) => {
-        console.error('There was an error with register', err);
+        console.error('there was an error with register', err);
       });
   };
 
@@ -94,6 +96,6 @@ class Register extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default Register;
