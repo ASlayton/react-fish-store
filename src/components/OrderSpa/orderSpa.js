@@ -4,7 +4,7 @@ import './orderSpa.css';
 class OrderSpa extends React.Component {
   render () {
     return (
-      <div id="orderSpa">
+      <div className="OrderSpa">
         <h2>Order Spa</h2>
       </div>
     );

@@ -4,7 +4,7 @@ import './order.css';
 class Order extends React.Component {
   render () {
     return (
-      <div id="order">
+      <div className="Order">
         <h2>Order</h2>
       </div>
     );
