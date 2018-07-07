@@ -9,7 +9,7 @@ import Navbar from '../components/Navbar/navbar';
 // import New from '../components/New/new';
 // import Order from '../components/Order/order';
 // import OrderSpa from '../components/OrderSpa/orderSpa';
-// import Register from '../components/Register/register';
+import Register from '../components/Register/register';
 // import SingleOrder from '../components/SingleOrder/singleOrder';
 
 const PrivateRoute = ({ component: Component, authed, ...rest}) => {
@@ -22,6 +22,23 @@ const PrivateRoute = ({ component: Component, authed, ...rest}) => {
         ) : (
           <Redirect
             to={{ pathname: '/login', state: {from: props.location}}}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PublicRoute = ({ component: Component, authed, ...rest}) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed === false ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/orders', state: {from: props.location}}}
           />
         )
       }
@@ -44,6 +61,7 @@ class App extends React.Component {
                 <Switch>
                   <Route path="/" exact component={Home} />
                   <PrivateRoute path="/inventory" authed={this.state.authed} component={Inventory} />
+                  <PublicRoute path="/register" authed={this.state.authed} component={Register} />
                 </Switch>
               </div>
             </div>
@@ -54,7 +72,6 @@ class App extends React.Component {
         <New />
         <Order />
         <OrderSpa />
-        <Register />
         <SingleOrder /> */}
       </div>
     );
