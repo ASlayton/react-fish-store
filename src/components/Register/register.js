@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './register.css';
+import authRequests from '../../firebaseRequests/auth';
 
 class Register extends React.Component {
   state = {
@@ -10,8 +11,17 @@ class Register extends React.Component {
     },
   };
 
-  registerClickEvent = () => {
-
+  registerClickEvent = (e) => {
+    const {user} = this.state;
+    e.preventDefault();
+    authRequests
+      .registerUser(user)
+      .then(() => {
+        this.props.history.push('/orders');
+      })
+      .catch((err) => {
+        console.error('There was an error with register', err);
+      });
   };
 
   emailChange = (e) => {
