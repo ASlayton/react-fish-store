@@ -3,6 +3,11 @@ import formatPrice from '../../helpers';
 import './Fish.css';
 
 class Fish extends React.Component {
+  // You need the fat arrow in this case to have access to this.props
+  addClickEvent = () => {
+    this.props.addToOrder(this.props.details.id);
+  };
+
   render () {
     const {details} = this.props;
     const image = require(`${details.image}`);
@@ -17,6 +22,7 @@ class Fish extends React.Component {
         <p>{details.desc}</p>
         <button
           disabled={!isAvailable}
+          onClick={this.addClickEvent}
         >
           {isAvailable ? 'Add to Order' : 'Sold Out!'}
         </button>

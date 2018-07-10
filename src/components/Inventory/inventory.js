@@ -11,7 +11,7 @@ class Inventory extends React.Component {
     fishRequests
       .getRequest()
       .then((fishes) => {
-        this.setState({fishes: fishes});
+        this.setState({fishes});
       })
       .catch((err) => {
         console.error('error with fish got request', err);
