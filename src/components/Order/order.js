@@ -1,12 +1,18 @@
 import React from 'react';
+
 import formatPrice from '../../helpers';
+
 import './Order.css';
 
 class Order extends React.Component {
+  saveOrder= () => {
+    this.props.saveNewOrder();
+  }
+
   renderOrder = (key) => {
     const fish = this.props.fishes.find(x => x.id === key);
     const count = this.props.order[key];
-    const xClickFunction = () => {
+    const xClickFunction =  () => {
       this.props.removeFromOrder(key);
     };
     return (
@@ -22,11 +28,13 @@ class Order extends React.Component {
         </div>
       </li>
     );
-  };
-
+  }
   render () {
+    // orderIds = ['fish1', 'fish7'];
     const orderIds = Object.keys(this.props.order);
+    const orderExists = orderIds.length > 0;
     const total = orderIds.reduce((prevTotal, key) => {
+      //  {"name": "Pacific Halibut","image": "./images/hali.jpg","desc":"Everyones favorite white fish. We will cut it to the size you need and ship it.","price": 1724,"status": "available"}
       const fish = this.props.fishes.find(x => x.id === key);
       const count = this.props.order[key];
       const isAvailable = fish && fish.status === 'available';
@@ -41,8 +49,14 @@ class Order extends React.Component {
         <ul>
           {orderIds.map(this.renderOrder)}
         </ul>
-        <div className="total">Total:<strong>{formatPrice(total)}</strong></div>
-        <button className="btn btn-default">Save Order</button>
+        <div className="total">Total: <strong>{formatPrice(total)}</strong></div>
+        {
+          orderExists ? (
+            <button className="btn btn-default" onClick={this.saveOrder}>Save Order</button>
+          ) : (
+            <div>Add inventory to your order</div>
+          )
+        }
       </div>
     );
   }
