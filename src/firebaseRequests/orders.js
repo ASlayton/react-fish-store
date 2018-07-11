@@ -34,6 +34,19 @@ const postRequest = (newOrder) => {
   });
 };
 
+const getSingleRequest = (id) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/orders/${id}.json`)
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+
 const deleteRequest = (orderId) => {
   return new Promise ((resolve, reject) => {
     axios
@@ -47,4 +60,17 @@ const deleteRequest = (orderId) => {
   });
 };
 
-export default { getRequest, postRequest, deleteRequest };
+const putRequest = (orderId, updatedOrder) => {
+  return new Promise ((resolve, reject) => {
+    axios
+      .put(`${constants.firebaseConfig.databaseURL}/orders/${orderId}.json`, updatedOrder)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default { getRequest, postRequest, deleteRequest, putRequest, getSingleRequest };
